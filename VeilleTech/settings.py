@@ -31,7 +31,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['VeilleTech.herokuapp.com']
+ALLOWED_HOSTS = ['veilletech.herokuapp.com']
 
 
 # Application definition
