@@ -1,1 +1,1 @@
-web: gunicorn VeilleTech1.wsgi
+web: gunicorn veilletech.wsgi
