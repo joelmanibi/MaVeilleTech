@@ -86,8 +86,8 @@ DATABASES={
       'ENGINE':'django.db.backends.postgresql_psycopg2',
       'NAME':'VeilleTech',
       'USER':'postgres',
-      'PASSWORD':'Gbaneassiatta',
-      'HOST':'localhost',
+      'PASSWORD':'',
+      'HOST':'',
       'PORT':'5432',
    }
 }
