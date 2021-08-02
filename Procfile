@@ -1,1 +1,1 @@
-web gunicorn veilletech:app
+web gunicorn veilletech.wsgi:application --log-file -
