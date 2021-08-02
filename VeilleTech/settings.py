@@ -130,26 +130,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
 if os.environ.get('ENV') == 'PRODUCTION':
     
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-
     STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static')
+        os.path.join(PROJECT_ROOT,'static'),
     )
 
     STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
-    
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 MEDIA_URL = '/'
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_ROOT = os.path.join(BASE_DIR,"media/")
