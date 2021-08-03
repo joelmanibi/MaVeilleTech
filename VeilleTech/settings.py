@@ -129,37 +129,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+
 if os.environ.get('ENV') == 'PRODUCTION':
     
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATIC_URL = '/static/'
 
     STATICFILES_DIRS = (
         os.path.join(PROJECT_ROOT, 'static'),
     )
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
     STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
 
     DATABASES['default'].update(db_from_env)
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'handlers': {
-            'console': {
-                'class': 'logging.StreamHandler',
-            },
-        },
-        'loggers': {
-            'django': {
-                'handlers': ['console'],
-                'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-            },
-        },
-    }
-
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
