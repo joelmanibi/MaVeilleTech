@@ -143,7 +143,8 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
     db_from_env = dj_database_url.config(conn_max_age=500)
 
-    DATABASES['default'].update(db_from_env).LOGGING = {
+    DATABASES['default'].update(db_from_env)
+    LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
         'handlers': {
