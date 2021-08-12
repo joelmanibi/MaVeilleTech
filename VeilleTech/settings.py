@@ -15,7 +15,7 @@ import os
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates/')
 
 
@@ -131,29 +131,22 @@ USE_TZ = True
 
 
 if os.environ.get('ENV') == 'PRODUCTION':
-
-
     
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATIC_URL = '/static/'
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    #STATIC_URL = '/static/'
 
     STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
+        os.path.join(PROJECT_ROOT, 'static'),
     )
 
-    # Extra places for collectstatic to find static files.
+# Extra places for collectstatic to find static files.
 
     STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
 
     DATABASES['default'].update(db_from_env)
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-
-MEDIA_URL = '/'
-MEDIA_ROOT = os.path.join(BASE_DIR,"media/")
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
