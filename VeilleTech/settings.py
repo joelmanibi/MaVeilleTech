@@ -140,7 +140,7 @@ STATICFILES_DIRS = (
 
 # Extra places for collectstatic to find static files.
 
-#STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
+STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 
