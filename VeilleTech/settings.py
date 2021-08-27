@@ -27,10 +27,7 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates/')
 SECRET_KEY = 'j]_Fi\\q[n`)LlQ;C81\\f(nV/'
 #'j]_Fi\\q[n`)LlQ;C81\\f(nV/'
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['veilletech.herokuapp.com']
 
