@@ -27,7 +27,10 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates/')
 SECRET_KEY = 'j]_Fi\\q[n`)LlQ;C81\\f(nV/'
 #'j]_Fi\\q[n`)LlQ;C81\\f(nV/'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['veilletech.herokuapp.com']
 
@@ -128,16 +131,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
+
+    
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR/'static']
-STATIC_ROOT = BASE_DIR/'staticfiles'
-MEDIA_ROOT = BASE_DIR/"media/"
+
+STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
 
 # Extra places for collectstatic to find static files.
 
 STATICFILES_STORAGE ='whitenoise.storage.CompresseManifestStaticFilesStorage'
-MEDIA_URL = '/media/'
-django_heroku.settings(locals())
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 
 DATABASES['default'].update(db_from_env)
@@ -145,3 +152,5 @@ DATABASES['default'].update(db_from_env)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
+MEDIA_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR,"media/")
